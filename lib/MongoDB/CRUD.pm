@@ -22,7 +22,7 @@ sub create {
     $page_struct->{last_modified} = $page_struct->{created} = time();
 
     #say "creating page at: ", time();
-    my $id = $self->collection->insert($page_struct);
+    my $id = $self->collection->insert_one($page_struct);
     return $id->value;
 }
 

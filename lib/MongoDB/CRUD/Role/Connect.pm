@@ -52,19 +52,19 @@ has 'collection' => (
 
 sub _build_conn {
     my $self = shift;
-    MongoDB::Connection->new( host => $self->host );
+    MongoDB::MongoClient->new( host => $self->host );
 }
 
 sub _build_db  {
     my $self = shift;
     my $db_name = $self->db_name;
-    $self->conn->${db_name};
+    $self->conn->get_database(${db_name});
 }
 
 sub _build_collection  {
     my $self = shift;
     my $collection_name = $self->collection_name;
-    $self->db->${collection_name};
+    $self->db->get_collection(${collection_name});
 }
 
 1;
