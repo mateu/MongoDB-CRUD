@@ -22,8 +22,8 @@ sub create {
     $page_struct->{last_modified} = $page_struct->{created} = time();
 
     #say "creating page at: ", time();
-    my $id = $self->collection->insert_one($page_struct);
-    return $id->value;
+    my $result = $self->collection->insert_one($page_struct);
+    return $result->inserted_id;
 }
 
 =head2 read
